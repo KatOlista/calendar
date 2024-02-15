@@ -1,0 +1,1 @@
+body{margin:0;display:flex;place-items:center;min-width:320px;min-height:100vh}button{height:40px;border-radius:5px;border:1px solid transparent;font-size:1em;font-weight:500;background-color:#e3e4e6;cursor:pointer;transition:all .3s}button:hover{background-color:#cbd0d3;border-color:#d4abd2;transform:scale(1.1)}
