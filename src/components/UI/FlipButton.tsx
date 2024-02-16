@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import {createUseStyles} from 'react-jss';
+import cn from 'classnames';
+
 import { DateContext } from '../../context';
 import { 
-  MAX_MONTH_NUM, 
-  MIN_MONTH_NUM, 
+  getNextMonth,
+  getPrevMonth, 
 } from '../../utils';
 
 const useStyles = createUseStyles({
@@ -12,7 +14,7 @@ const useStyles = createUseStyles({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     background: {
-      image: 'url("/assets/icons/chevron-up_icon.svg")',
+      image: 'url("./assets/icons/chevron-up_icon.svg")',
     },
   },
   selected: {
@@ -27,38 +29,36 @@ const useStyles = createUseStyles({
 });
 
 type Props = {
-  btnType?: string | undefined;
+  nextMonth?: boolean;
 };
 
-export const FlipButton: React.FC<Props> = ({ btnType }) => {
+export const FlipButton: React.FC<Props> = ({ nextMonth }) => {
   const classes = useStyles();
 
   const { 
     year,
     setYear,
-    month,
-    setMonth,
+    selectedMonth,
+    setSelectedMonth,
   } = useContext(DateContext);
 
   const selectedMonthHandler = () => {
-    const flipMonthValue = btnType ? 1 : -1;
+    const [actualMonth, actualYear] = nextMonth
+      ? getNextMonth(selectedMonth, year)
+        : getPrevMonth(selectedMonth, year);
 
-    if (!month && flipMonthValue === -1) {
-      setYear(year + flipMonthValue);
-      setMonth(MAX_MONTH_NUM);
-    } else if (month === MAX_MONTH_NUM && flipMonthValue === 1) {
-      setYear(year + flipMonthValue);
-      setMonth(MIN_MONTH_NUM);
-    } else {
-      setMonth(month + flipMonthValue);
-    }
+    setSelectedMonth(actualMonth);
+    setYear(actualYear);
   };
 
   return (
       <button 
         type="button"
         onClick={() => selectedMonthHandler()}
-        className={`${classes.flipButton} ${btnType ? classes.shevronDown : ''}`}
+        className={cn(
+          classes.flipButton,
+          { [classes.shevronDown]: nextMonth },
+        )}
       />
   );
 };

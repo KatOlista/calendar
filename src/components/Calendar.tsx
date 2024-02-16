@@ -1,28 +1,61 @@
 import {createUseStyles} from 'react-jss';
-import { Day } from '.';
-import { TodoProvider } from '../context';
+import { useContext } from 'react';
+
+import { DayItem } from './DayItem';
+import { DateContext, TodoProvider } from '../context';
+
+import { 
+  MONTH_START_DATE, 
+  PREV, 
+  createDaysForMonth, 
+  getNextMonth, 
+  getPrevMonth,
+  getVisibleDays,
+  getWeekDayNumber,
+} from '../utils';
 
 const useStyles = createUseStyles({
   myCalendar: {
+    padding: 0,
     width: '100vw',
     display: 'grid',
-    gap: '1rem',
-    // gridAutoFlow: 'row',
+    gap: 5,
     gridTemplateColumns: 'repeat(7, 1fr)',
-    backgroundColor: 'yellow',
-  }
+    backgroundColor: '#EEEFF1',
+  },
 });
 
 export const Calendar = () => {
   const classes = useStyles();
 
+  const { year, selectedMonth } = useContext(DateContext);
+
+  const [prevMonth, prevMonthYear] = getPrevMonth(selectedMonth, year);
+  const [nextMonth, nextMonthYear] = getNextMonth(selectedMonth, year);
+
+  const currentMonthDays = createDaysForMonth(selectedMonth, year);
+  const previousMonthDays = createDaysForMonth(prevMonth, prevMonthYear);
+  const nextMonthDays = createDaysForMonth(nextMonth, nextMonthYear);
+
+  const firstMonthWeekDay = getWeekDayNumber(`${year} ${selectedMonth + 1} ${MONTH_START_DATE}`);
+  const lastMonthWeekDay = getWeekDayNumber(`${year} ${selectedMonth + 1} ${currentMonthDays.length}`);
+
+  const visiblePrevDays = getVisibleDays(previousMonthDays, firstMonthWeekDay, PREV);
+  const visibleNextDays = getVisibleDays(nextMonthDays, lastMonthWeekDay);
+
+  const calendarGridDays = [ 
+    ...visiblePrevDays, 
+    ...currentMonthDays,
+    ...visibleNextDays,
+  ];
+
   return (
-    <main className={classes.myCalendar}>
-      <TodoProvider>
-        <ul>
-          <Day />
-        </ul>
-      </TodoProvider>
-    </main>
+    <TodoProvider>
+      <ul className={classes.myCalendar}>
+        {calendarGridDays.map(day => (
+          <DayItem key={day.dateString} day={day} />
+        ))}
+      </ul>
+    </TodoProvider>
   );
 };

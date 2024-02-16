@@ -11,7 +11,7 @@ import { WEEK_DAYS } from '../utils/constants';
 const useStyles = createUseStyles({
   myHeader: {
     paddingBlock: 10,
-    backgroundColor: '#EEEFF1',
+    backgroundColor: '#EBEBEB',
   },
 
   myNavigation: {
@@ -53,7 +53,7 @@ export const Header = () => {
       <nav className={classes.myNavigation}>
         <div className={classes.btnContainer}>
           <FlipButton />
-          <FlipButton btnType="shewronDown"/>
+          <FlipButton nextMonth />
         </div>
 
         <div className={classes.selectedMonth} >

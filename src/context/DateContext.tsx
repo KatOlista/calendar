@@ -4,7 +4,10 @@ import {
   useState,
 } from 'react';
 
-import { currentDate, initialDate } from '../utils';
+import { 
+  currentDate, 
+  initialDateValues, 
+} from '../utils';
 
 type DateProviderProps = {
   children: ReactNode;
@@ -14,48 +17,44 @@ type DateContextType = {
   year: number;
   setYear: React.Dispatch<React.SetStateAction<number>>;
 
-  month: number;
-  setMonth: React.Dispatch<React.SetStateAction<number>>;
+
+  selectedMonth: number;
+  setSelectedMonth: React.Dispatch<React.SetStateAction<number>>;
   
   monthName: string;
-
-  // day: number;
-  // weekDay: string;
 };
 
 export const DateContext = createContext<DateContextType>({
-  year: initialDate.year,
+  year: initialDateValues.year,
   setYear: () => {},
 
-  month: initialDate.month,
-  setMonth: () => {},
+  selectedMonth: initialDateValues.month,
+  setSelectedMonth: () => {},
 
-  monthName: initialDate.monthName,
-
-  // day: initialDate.day,
-  // weekDay: initialDate.weekDay,
+  monthName: initialDateValues.monthName,
 });
 
 export function DateProvider({ children }: DateProviderProps) {
   const date = currentDate;
-  const [year, setYear] = useState(initialDate.year);
-  const [month, setMonth] = useState(initialDate.month);
-  // const day = initialDate.day;
 
-  date.setMonth(month);
+  const [year, setYear] = useState(initialDateValues.year);
+  const [selectedMonth, setSelectedMonth] = useState(initialDateValues.month);
+
+  date.setMonth(selectedMonth);
   const monthName = date.toLocaleString('en-US', { month: 'long' });
+
+  /////////////////////////////////////////////////
+
+  
 
   const value = {
     year,
     setYear,
 
-    month,
-    setMonth,
+    selectedMonth,
+    setSelectedMonth,
 
     monthName,
-
-    // day,
-    // weekDay,
   };
 
   return (
