@@ -18,3 +18,10 @@ export const MONTH_START_DATE = 1;
 export const PREV = 'prev';
 export const NEXT = 'next';
 export const AMOUNT_DAYS_IN_WEEK = 6;
+
+export const BASE_URL = 'https://date.nager.at/api/v3/';
+export const HOLIDAY_URL = 'publicholidays';
+export const COUNTRY_URL = 'availablecountries';
+
+export const INITIAL_COUNTRY = {value: 'US', label: 'United States'};
+

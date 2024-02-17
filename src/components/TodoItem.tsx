@@ -9,16 +9,16 @@ const useStyles = createUseStyles({
 });
 
 // type Props = {
+  // todo: 
 // };
 
-// export const TodoList: React.FC<Props> = () => {
+// export const TodoItem: React.FC<Props> = ({ todo }) => {
 export const TodoItem = () => {
   const classes = useStyles();
-
-  // const {  } = useContext();
   
   return (
     <li className={classes.todoItem}>
+      {(<TodoItem />)}
     </li>
   );
 };

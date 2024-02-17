@@ -17,7 +17,7 @@ import {
 const useStyles = createUseStyles({
   myCalendar: {
     padding: 0,
-    width: '100vw',
+    // width: '100vw',
     display: 'grid',
     gap: 5,
     gridTemplateColumns: 'repeat(7, 1fr)',

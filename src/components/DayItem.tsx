@@ -5,12 +5,12 @@ import cn from 'classnames';
 import { DayType } from '../types';
 import { DateContext } from '../context';
 import { initialDateValues } from '../utils';
+import { TodoList } from '.';
 
 const useStyles = createUseStyles({
   myDay: {
     padding: 10,
     boxSizing: 'border-box',
-    width: '100%',
     height: 'auto',
     backgroundColor: '#EBEBEB',
     listStyle: 'none',
@@ -22,14 +22,7 @@ const useStyles = createUseStyles({
 
   currentDay: {
     fontWeight: 700,
-    border: '2px solid #D4ABD2',
-  },
-
-  todoList: {
-    width: '80%',
-    height: '80%',
-    backgroundColor: '#FFFFFF',
-    overflow: 'hidden',
+    border: '2px solid #2684FF',
   },
 });
 
@@ -52,9 +45,7 @@ export const DayItem: React.FC<Props> = ({ day }) => {
       )}>
         <span>{day.dayOfMonth}</span>
 
-        <li>
-
-        </li>
+        <TodoList />
     </li>
   );
 };

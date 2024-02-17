@@ -2,10 +2,10 @@ import {createUseStyles} from 'react-jss';
 import { useContext } from 'react';
 
 import { Button } from '.';
-import { FlipButton } from '.';
 import { DateContext } from '../context';
 
 import { WEEK_DAYS } from '../utils/constants';
+import { DropDown } from './UI/DropDown';
 
 
 const useStyles = createUseStyles({
@@ -16,7 +16,7 @@ const useStyles = createUseStyles({
 
   myNavigation: {
     display: 'grid',
-    gridTemplateColumns: '1fr 5fr 1fr',
+    gridTemplateColumns: '1fr 3fr 1fr',
     fontWeight: 700,
   },
 
@@ -37,6 +37,7 @@ const useStyles = createUseStyles({
     display: 'grid',
     gridAutoFlow: 'column',
   },
+
   weekDay: {
     textAlign: 'center',
     lineHeight: '40px',
@@ -52,8 +53,8 @@ export const Header = () => {
     <header className={classes.myHeader} >
       <nav className={classes.myNavigation}>
         <div className={classes.btnContainer}>
-          <FlipButton />
-          <FlipButton nextMonth />
+          <Button />
+          <Button nextMonth />
         </div>
 
         <div className={classes.selectedMonth} >
@@ -61,8 +62,7 @@ export const Header = () => {
         </div>
 
         <div className={classes.btnContainer}>
-        <Button content="Month" />
-        <Button content="Week" />
+          <DropDown />
         </div>
       </nav>
 
