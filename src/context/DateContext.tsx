@@ -9,7 +9,7 @@ import {
   currentDate, 
   initialDateValues, 
 } from '../utils';
-import { Country, Holiday } from '../types';
+import { Country, Todo } from '../types';
 
 type DateProviderProps = {
   children: ReactNode;
@@ -24,8 +24,8 @@ type DateContextType = {
   
   monthName: string;
 
-  holidays: Holiday[];
-  setHolidays: React.Dispatch<React.SetStateAction<Holiday[]>>;
+  holidays: Todo[];
+  setHolidays: React.Dispatch<React.SetStateAction<Todo[]>>;
 
   countries: Country[];
   setCountries: React.Dispatch<React.SetStateAction<Country[]>>;
@@ -57,7 +57,7 @@ export function DateProvider({ children }: DateProviderProps) {
   const date = currentDate;
 
   const [year, setYear] = useState(initialDateValues.year);
-  const [holidays, setHolidays] = useState<Holiday[]>([]);
+  const [holidays, setHolidays] = useState<Todo[]>([]);
   const [countries, setCountries] = useState<Country[]>([]);
   const [selectedCountry, setSelectedCountry] = useState(INITIAL_COUNTRY);
 

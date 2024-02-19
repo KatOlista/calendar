@@ -1,23 +1,27 @@
 import { createUseStyles } from "react-jss";
-
-import { Calendar, Header } from "./components";
 import { useContext, useEffect } from "react";
+import { v4 as uuid } from 'uuid';
+
+import { Calendar, Footer, Header } from "./components";
 import { DateContext } from "./context";
-import { getCountries } from "./api/countries";
-import { getHolidays } from "./api/holidays";
+import { getCountries, getHolidays } from "./api";
 
 const useStyles = createUseStyles({
   myApp: {
     width: '100vw',
-    height: '100vh',
+    maxHeight: '100vh',
     display: 'grid',
-    gridTemplateRows: 'auto 1fr',
+    // gridTemplateRows: '1fr 4fr 1fr',
     backgroundColor: '#EEEFF1',
     color: '#213547',
     fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
     lineHeight: 1.5,
     fontWeight: 400,
-  }
+  },
+  main: {
+    display: 'grid',
+    gridTemplateColumns: '1fr ',
+  },
 });
 
 export const App = () => {
@@ -26,7 +30,6 @@ export const App = () => {
   const { 
     year,
     setCountries,
-    holidays,
     setHolidays, 
     selectedCountry,
   } = useContext(DateContext);
@@ -41,25 +44,31 @@ export const App = () => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
   }, []);
 
   useEffect(() => {
     getHolidays(year, selectedCountry.value)
       .then((dataFromServer) => {
-        setHolidays(dataFromServer);
+        setHolidays(dataFromServer.map(holiday => {
+          return {
+            id: uuid(),
+            date: holiday.date,
+            name: holiday.name,
+            labelColors: ['transparent'],
+        }}));
       })
       .catch((err) => {
         console.log(err);
       });
   }, [selectedCountry.value, year]);
-
-  console.log('holidays', holidays);
   
   return(
     <div className={classes.myApp}>
       <Header />
-      
+
       <Calendar />
+
+      <Footer />
     </div>
 )};

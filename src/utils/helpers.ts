@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 import { AMOUNT_DAYS_IN_WEEK, MAX_MONTH_NUM, MIN_MONTH_NUM, PREV } from ".";
 import { DayType } from "../types";
 
@@ -9,12 +11,21 @@ export const getWeekDayNumber = (date: string) => {
   return new Date(date).getDay();
 }
 
+const addZero = (value: number) => {
+  return value > 9
+    ? value
+    : '0' + value;
+};
+
 export function createDaysForMonth(month: number, year: number) {
   return [...Array(getNumberOfDaysInMonth(month, year))]
     .map((_, index) => {
+      const correctMonth = month + 1;
+      const correctDay = index + 1;
 
       return {
-        dateString: Date.parse(`${year}-${month + 1}-${index + 1}`),
+        id: uuid(),
+        fullDate: `${year}-${addZero(correctMonth) }-${addZero(correctDay)}`,
         dayOfMonth: index + 1,
         month: month,
       };

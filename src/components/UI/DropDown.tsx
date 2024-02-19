@@ -6,7 +6,8 @@ import { Country } from '../../types';
 const customStyle = () => ({
   backgroundColor: '#E3E4E6',
   height: 40,
-  width: 150,
+  minWidth: 150,
+  maxWidth: 250,
   ':hover': {
     backgroundColor: '#EEEFF1',
     border: '2px solid #2684FF',

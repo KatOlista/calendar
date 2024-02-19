@@ -16,11 +16,12 @@ import {
 
 const useStyles = createUseStyles({
   myCalendar: {
+    // maxWidth: '100vw',
     padding: 0,
-    // width: '100vw',
     display: 'grid',
     gap: 5,
     gridTemplateColumns: 'repeat(7, 1fr)',
+    // gridTemplateRows: 'repeat(5, 1fr)',
     backgroundColor: '#EEEFF1',
   },
 });
@@ -53,7 +54,7 @@ export const Calendar = () => {
     <TodoProvider>
       <ul className={classes.myCalendar}>
         {calendarGridDays.map(day => (
-          <DayItem key={day.dateString} day={day} />
+          <DayItem key={day.id} day={day} />
         ))}
       </ul>
     </TodoProvider>

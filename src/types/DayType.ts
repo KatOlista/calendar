@@ -1,5 +1,6 @@
 export type DayType = {
-  dateString: number;
+  id: string;
+  fullDate: string;
   dayOfMonth: number;
   month: number;
 };

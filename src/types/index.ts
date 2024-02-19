@@ -1,4 +1,5 @@
 export type { DayType } from './DayType';
-export type { Holiday } from './HolidayType';
+export type { HolidayFromServer } from './HolidayFromServerType';
 export type { CountryFromServer } from './CounryFromSercerType';
 export type { Country } from './CountryType';
+export type { Todo } from './TodoType';

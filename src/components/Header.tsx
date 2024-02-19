@@ -1,36 +1,41 @@
 import {createUseStyles} from 'react-jss';
 import { useContext } from 'react';
 
-import { Button } from '.';
+import { FlipButton, DropDown } from '.';
 import { DateContext } from '../context';
 
-import { WEEK_DAYS } from '../utils/constants';
-import { DropDown } from './UI/DropDown';
+import { WEEK_DAYS } from '../utils';
 
 
 const useStyles = createUseStyles({
   myHeader: {
     paddingBlock: 10,
+    width: '100vw',
     backgroundColor: '#EBEBEB',
   },
 
   myNavigation: {
     display: 'grid',
-    gridTemplateColumns: '1fr 3fr 1fr',
+    gridTemplateColumns: '1fr 10fr 2fr',
     fontWeight: 700,
   },
 
   btnContainer: {
-    paddingInline: 10,
+    paddingLeft: 10,
     gap: 10,
     display: 'grid',
     gridTemplateColumns: '1fr 1fr',
-    justifyItems: 'center',
+    justifyItems: 'right',
   },
 
   selectedMonth: {
     textAlign: 'center',
-    fontSize: 30,
+  },
+
+  dropDownContainer: {
+    paddingRight: 10,
+    display: 'grid',
+    justifyItems: 'right',
   },
 
   weekDays: {
@@ -42,6 +47,11 @@ const useStyles = createUseStyles({
     textAlign: 'center',
     lineHeight: '40px',
   },
+  // '@media (max-width: 425px)': {
+  //   selectedMonth: {
+  //     fontSize: 16
+  //   }
+  // }
 });
 
 export const Header = () => {
@@ -53,15 +63,15 @@ export const Header = () => {
     <header className={classes.myHeader} >
       <nav className={classes.myNavigation}>
         <div className={classes.btnContainer}>
-          <Button />
-          <Button nextMonth />
+          <FlipButton />
+          <FlipButton nextMonth />
         </div>
 
         <div className={classes.selectedMonth} >
-          <span>{`${monthName} ${year}`}</span>
+          <h1>{`${monthName} ${year}`}</h1>
         </div>
 
-        <div className={classes.btnContainer}>
+        <div className={classes.dropDownContainer}>
           <DropDown />
         </div>
       </nav>
