@@ -50,7 +50,7 @@ const useStyles = createUseStyles({
   content: {
     margin: '30px 0 0',
     height: '70%',
-    overflow: 'scroll',
+    'overflow-y': 'auto',
   },
 
   list: {

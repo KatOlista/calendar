@@ -7,8 +7,8 @@ import { DateContext, TodoProvider } from '../context';
 import { 
   MONTH_START_DATE, 
   PREV, 
-  createDaysForMonth, 
-  getNextMonth, 
+  generateDays, 
+  getNextMonth,
   getPrevMonth,
   getVisibleDays,
   getWeekDayNumber,
@@ -34,9 +34,9 @@ export const Calendar = () => {
   const [prevMonth, prevMonthYear] = getPrevMonth(selectedMonth, year);
   const [nextMonth, nextMonthYear] = getNextMonth(selectedMonth, year);
 
-  const currentMonthDays = createDaysForMonth(selectedMonth, year);
-  const previousMonthDays = createDaysForMonth(prevMonth, prevMonthYear);
-  const nextMonthDays = createDaysForMonth(nextMonth, nextMonthYear);
+  const currentMonthDays = generateDays(selectedMonth, year);
+  const previousMonthDays = generateDays(prevMonth, prevMonthYear);
+  const nextMonthDays = generateDays(nextMonth, nextMonthYear);
 
   const firstMonthWeekDay = getWeekDayNumber(`${year} ${selectedMonth + 1} ${MONTH_START_DATE}`);
   const lastMonthWeekDay = getWeekDayNumber(`${year} ${selectedMonth + 1} ${currentMonthDays.length}`);

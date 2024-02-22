@@ -5,7 +5,6 @@ import { FlipButton, DropDown } from '.';
 import { DateContext } from '../context';
 import { WEEK_DAYS } from '../utils';
 
-
 const useStyles = createUseStyles({
   myHeader: {
     paddingTop: 5,
