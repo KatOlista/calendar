@@ -1,40 +1,61 @@
 import Select, { StylesConfig } from 'react-select';
-import { DateContext } from '../../context';
-import { useContext } from 'react';
-import { Country } from '../../types';
+
+import { DropDownListElement } from '../../types';
 
 const customStyle = () => ({
   backgroundColor: '#E3E4E6',
   height: 40,
-  minWidth: 150,
-  maxWidth: 250,
+  minWidth: 280,
   ':hover': {
     backgroundColor: '#EEEFF1',
     border: '2px solid #2684FF',
   },
 });
 
-const colourStyles: StylesConfig = {
+const dropDownStyles: StylesConfig = {
   control: (styles) => ({ ...styles, ...customStyle() }),
 };
 
-export const DropDown = () => {
-  const {
-    selectedCountry,
-    setSelectedCountry,
-    countries,
-  } = useContext(DateContext);
+type Props = {
+  options: DropDownListElement[],
+  placeholder: string,
+  selectedOption?: DropDownListElement | null,
+  setSelectedOption?: React.Dispatch<React.SetStateAction<DropDownListElement>> | (() => void),
+  selectedOptions?: DropDownListElement[] | null,
+  setSelectedOptions?: React.Dispatch<React.SetStateAction<DropDownListElement[]>> | (() => void),
+  isMulti?: boolean,
+};
+
+export const DropDown: React.FC<Props> = ({
+  options,
+  placeholder,
+  selectedOption = null,
+  setSelectedOption = () => {},
+  selectedOptions = null,
+  setSelectedOptions = () => {},
+  isMulti = false,
+}) => {
+
+  const defaultValue = selectedOption
+    ? selectedOption
+    : selectedOptions;
 
   return (
     <>
       <Select
+        placeholder={placeholder}
         className="basic-single"
         classNamePrefix="select"
-        defaultValue={selectedCountry}
-        styles={colourStyles}
-        name="country"
-        options={countries}
-        onChange={(option) => setSelectedCountry(option as Country)}
+        defaultValue={defaultValue}
+        styles={dropDownStyles}
+        name={placeholder}
+        isMulti={isMulti}
+        options={options}
+        onChange={(option) => {
+          return selectedOption
+            ? setSelectedOption(option as DropDownListElement)
+            : setSelectedOptions(option as DropDownListElement[]);
+        }}
       />
     </>
   );

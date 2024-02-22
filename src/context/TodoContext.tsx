@@ -1,28 +1,43 @@
 import {
   ReactNode,
   createContext,
+  useState,
 } from 'react';
+
+import { DropDownListElement, Todo } from '../types';
+import { TODOS } from '../data/todos';
+import { COLORS } from '../data/colors';
 
 type TodoProviderProps = {
   children: ReactNode;
 };
 
 type TodoContextType = {
-  // selectedCountry: Country;
-  // setSelectedCountry: React.Dispatch<React.SetStateAction<Country>>;
+  todos: Todo[];
+  setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
+
+  colors: DropDownListElement[],
+  setColors: React.Dispatch<React.SetStateAction<DropDownListElement[]>>;
 };
 
 export const TodoContext = createContext<TodoContextType>({
-  // selectedCountry: INITIAL_COUNTRY,
-  // setSelectedCountry: () => {},
+  todos: TODOS, 
+  setTodos: () => {},
+
+  colors: COLORS,
+  setColors: () => {},
 });
 
 export function TodoProvider({ children }: TodoProviderProps) {
-
+  const [todos, setTodos] = useState<Todo[]>(TODOS);
+  const [colors, setColors] = useState<DropDownListElement[]>(COLORS);
 
   const value = {
-    // selectedCountry,
-    // setSelectedCountry,
+    todos, 
+    setTodos,
+
+    colors, 
+    setColors,
   };
 
   return (

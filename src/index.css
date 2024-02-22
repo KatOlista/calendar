@@ -30,8 +30,9 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 768px;
   height: 100vh;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 h1,
@@ -41,7 +42,7 @@ h3 {
 }
 
 ul {
-  padding: 3px;
+  padding: 0;
 }
 
 li {
@@ -59,7 +60,7 @@ button {
 button:hover {
   background-color: #EEEFF1;
   border-color: #2684FF;
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 
 /* @media (prefers-color-scheme: light) {

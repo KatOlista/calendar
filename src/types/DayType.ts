@@ -3,4 +3,5 @@ export type DayType = {
   fullDate: string;
   dayOfMonth: number;
   month: number;
+  year: number;
 };

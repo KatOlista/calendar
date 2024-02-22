@@ -2,7 +2,7 @@ import {createUseStyles} from 'react-jss';
 import { v4 as uuid } from 'uuid';
 
 import { Todo } from '../types';
-import { Label } from './UI/Label';
+import { Label } from '.';
 
 const useStyles = createUseStyles({
   todoItem: {
@@ -29,7 +29,7 @@ type Props = {
   todo: Todo,
 };
 
-export const TodoItem: React.FC<Props> = ({ todo }) => {
+export const VisibleTodoItem: React.FC<Props> = ({ todo }) => {
   const classes = useStyles();
 
   const { name } = todo;

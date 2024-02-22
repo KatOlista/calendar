@@ -28,6 +28,7 @@ export function createDaysForMonth(month: number, year: number) {
         fullDate: `${year}-${addZero(correctMonth) }-${addZero(correctDay)}`,
         dayOfMonth: index + 1,
         month: month,
+        year: year,
       };
     });
 }

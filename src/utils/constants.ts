@@ -25,3 +25,10 @@ export const COUNTRY_URL = 'availablecountries';
 
 export const INITIAL_COUNTRY = {value: 'US', label: 'United States'};
 
+export const MODULE_TITLES = {
+  todoForm: '',
+  todoList: (todoAmount: number) => todoAmount === 1 
+    ? '1 task'
+    : `${todoAmount} tasks`,
+};
+

@@ -9,9 +9,9 @@ import { getCountries, getHolidays } from "./api";
 const useStyles = createUseStyles({
   myApp: {
     width: '100vw',
-    maxHeight: '100vh',
+    height: '100vh',
     display: 'grid',
-    // gridTemplateRows: '1fr 4fr 1fr',
+    gridTemplateRows: 'auto 4fr auto',
     backgroundColor: '#EEEFF1',
     color: '#213547',
     fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
@@ -55,7 +55,7 @@ export const App = () => {
             id: uuid(),
             date: holiday.date,
             name: holiday.name,
-            labelColors: ['transparent'],
+            labelColors: [],
         }}));
       })
       .catch((err) => {

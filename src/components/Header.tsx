@@ -3,32 +3,31 @@ import { useContext } from 'react';
 
 import { FlipButton, DropDown } from '.';
 import { DateContext } from '../context';
-
 import { WEEK_DAYS } from '../utils';
 
 
 const useStyles = createUseStyles({
   myHeader: {
-    paddingBlock: 10,
+    paddingTop: 5,
     width: '100vw',
     backgroundColor: '#EBEBEB',
   },
 
   myNavigation: {
     display: 'grid',
-    gridTemplateColumns: '1fr 10fr 2fr',
+    gridTemplateColumns: '1fr 2fr 2fr 2fr',
     fontWeight: 700,
   },
 
   btnContainer: {
-    paddingLeft: 10,
-    gap: 10,
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    justifyItems: 'right',
+    paddingInline: 10,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    gap: 20,
   },
 
   selectedMonth: {
+    fontSize: 24,
     textAlign: 'center',
   },
 
@@ -45,7 +44,7 @@ const useStyles = createUseStyles({
 
   weekDay: {
     textAlign: 'center',
-    lineHeight: '40px',
+    lineHeight: '30px',
   },
   // '@media (max-width: 425px)': {
   //   selectedMonth: {
@@ -57,7 +56,13 @@ const useStyles = createUseStyles({
 export const Header = () => {
   const classes = useStyles();
 
-  const { year, monthName } = useContext(DateContext);
+  const { 
+    year,
+    monthName,
+    selectedCountry,
+    setSelectedCountry,
+    countries,
+  } = useContext(DateContext);
 
   return (
     <header className={classes.myHeader} >
@@ -67,14 +72,38 @@ export const Header = () => {
           <FlipButton nextMonth />
         </div>
 
-        <div className={classes.selectedMonth} >
-          <h1>{`${monthName} ${year}`}</h1>
+        <div className={classes.dropDownContainer}>
+          {/* <DropDown
+            placeholder='Select ?????'
+            selectedOption={}
+            setSelectedOption={}
+            options={}
+          /> 
+          <input />????
+          */}
         </div>
 
         <div className={classes.dropDownContainer}>
-          <DropDown />
+          {/* <DropDown
+            placeholder='Select '
+            selectedOptions={}
+            setSelectedOptions={}
+            options={}
+            isMulty
+          /> */}
+        </div>
+
+        <div className={classes.dropDownContainer}>
+          <DropDown
+            placeholder='Select country'
+            selectedOption={selectedCountry}
+            setSelectedOption={setSelectedCountry}
+            options={countries}
+          />
         </div>
       </nav>
+
+      <h1 className={classes.selectedMonth}>{`${monthName} ${year}`}</h1>
 
       <div className={classes.weekDays}>
         {WEEK_DAYS.map(day => (

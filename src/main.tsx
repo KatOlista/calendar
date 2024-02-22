@@ -4,12 +4,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 import { App } from './App.tsx';
-import { DateProvider } from './context';
+import { DateProvider, TodoProvider } from './context';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <DateProvider>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <TodoProvider>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </TodoProvider>
   </DateProvider>,
 )

@@ -1,14 +1,12 @@
 import {createUseStyles} from 'react-jss';
 
-// import cn from 'classnames';
-
 import { TodoItem } from '.';
 import { Todo } from '../types';
 
 const useStyles = createUseStyles({
   todoList: {
-    maxHeight: '70%',
-    backgroundColor: 'yellow',
+    fontSize: 14,
+    lineHeight: '120%',
   },
 });
 
@@ -20,11 +18,10 @@ export const TodoList: React.FC<Props> = ({ todos }) => {
   const classes = useStyles();
   
   return (
-    <ul className={classes.todoList}>
-      {todos.map(todo => {
-        return (
+    <section className={classes.todoList}>
+      {todos.map(todo => (
         <TodoItem key={todo.id} todo={todo} />
-      )})}
-    </ul>
+      ))}
+    </section>
   );
 };

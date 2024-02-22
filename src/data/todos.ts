@@ -3,54 +3,111 @@ export const TODOS = [
     id: '1',
     date: '2024-02-14',
     name: 'Red todo',
-    labelColors: ['red'],
+    labelColors: [
+      {
+        value: 'red',
+        label: 'red',
+      },
+    ],
   },
   {
     id: '2',
     date: '2024-02-15',
     name: 'Green todo',
-    labelColors: ['green'],
+    labelColors: [
+      {
+        value: 'green',
+        label: 'green',
+      },
+    ],
   },
   {
     id: '3',
     date: '2024-02-16',
     name: 'Blue todo',
-    labelColors: ['blue'],
+    labelColors: [
+      {
+        value: 'blue',
+        label: 'blue',
+      },
+    ],
   },
   {
     id: '4',
     date: '2024-02-19',
     name: 'Many colors todo',
-    labelColors: ['blue', 'yellow'],
+    labelColors: [
+      {
+        value: 'blue',
+        label: 'blue',
+      },
+      {
+        value: 'yellow',
+        label: 'yellow',
+      },
+      {
+        value: 'red',
+        label: 'red',
+      },
+      {
+        value: 'purple',
+        label: 'purple',
+      },
+    ],
   },
   {
     id: '5',
     date: '2024-02-19',
     name: 'Just todo1',
-    labelColors: ['blue'],
+    labelColors: [
+      {
+        value: 'blue',
+        label: 'blue',
+      },
+    ],
   },
   {
     id: '6',
     date: '2024-02-19',
     name: 'Just todo2',
-    labelColors: ['red'],
+    labelColors: [
+      {
+        value: 'red',
+        label: 'red',
+      },
+    ],
   },
   {
     id: '7',
     date: '2024-02-20',
     name: 'Just todo2',
-    labelColors: ['red'],
+    labelColors: [
+      {
+        value: 'red',
+        label: 'red',
+      },
+    ],
   },
   {
     id: '8',
     date: '2024-02-20',
     name: 'Just todo1',
-    labelColors: ['yellow'],
+    labelColors: [
+      {
+        value: 'yellow',
+        label: 'yellow',
+      },
+    ],
   },
   {
     id: '9',
     date: '2024-02-20',
     name: 'Just todo2',
-    labelColors: ['red'],
+    labelColors: [
+      {
+        value: 'red',
+        label: 'red',
+      },
+    ],
   },
 ];
