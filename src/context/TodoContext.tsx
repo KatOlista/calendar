@@ -40,6 +40,8 @@ export function TodoProvider({ children }: TodoProviderProps) {
     setColors,
   };
 
+  console.log(todos);
+
   return (
     <TodoContext.Provider value={value}>
       {children}

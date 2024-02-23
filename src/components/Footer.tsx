@@ -89,8 +89,6 @@ export const Footer = () => {
       if(text) {
         const importedTodos = JSON.parse(text as string);
 
-        // console.log(importedTodos);
-
         const todosFromUser = importedTodos.map((todo: Omit<Todo, 'id'|'labelColors'>) => {
           return {
             ...todo,
@@ -102,6 +100,7 @@ export const Footer = () => {
         console.log(todosFromUser);
 
         setTodos(() => [...todosFromUser]);
+        // setTodos(() => []);
       }
     });
 

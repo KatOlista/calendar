@@ -112,6 +112,12 @@ export const DayItem: React.FC<Props> = ({ day }) => {
   const currentHoliday = holidays.filter(({ date }) => date === fullDate);
   const currentTodos = todos.filter(({ date }) => date === fullDate);
 
+  console.log('dayItem', todos);
+
+  // useEffect(() => {
+  //   console.log(todos, new Date().getSeconds());
+  // }, [todos]);
+
   const allTasks = [...currentHoliday, ...currentTodos];
 
   Modal.setAppElement('#root');

@@ -2,7 +2,7 @@ import {createUseStyles} from 'react-jss';
 import { useContext } from 'react';
 
 import { DayItem } from './DayItem';
-import { DateContext, TodoProvider } from '../context';
+import { DateContext } from '../context';
 
 import { 
   MONTH_START_DATE, 
@@ -51,12 +51,10 @@ export const Calendar = () => {
   ];
 
   return (
-    <TodoProvider>
-      <ul className={classes.myCalendar} id="capture">
-        {calendarGridDays.map(day => (
-          <DayItem key={day.id} day={day} />
-        ))}
-      </ul>
-    </TodoProvider>
+    <ul className={classes.myCalendar} id="capture">
+      {calendarGridDays.map(day => (
+        <DayItem key={day.id} day={day} />
+      ))}
+    </ul>
   );
 };
