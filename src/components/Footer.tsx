@@ -1,9 +1,11 @@
 import {createUseStyles} from 'react-jss';
 import html2canvas from 'html2canvas';
+import { v4 as uuid } from 'uuid';
 
 import { Button } from '.';
 import { useContext } from 'react';
 import { TodoContext } from '../context';
+import { Todo } from '../types';
 
 const useStyles = createUseStyles({
   controlPanel: {
@@ -11,8 +13,33 @@ const useStyles = createUseStyles({
     padding: 20,
     fontWeight: 700,
   },
+
   buttons: {
-    paddingInline: 40,
+    paddingInline: 35,
+  },
+
+  label: {
+    padding: 10,
+    height: 40,
+    display: 'inline-flex',
+    alignItems: 'center',
+    verticalAlign: 'middle',
+    cursor: 'pointer',
+    borderRadius: 5,
+    fontSize: 16,
+    color: '#5E5E5E',
+    border: '2px solid transparent',
+    backgroundColor: '#E3E4E6',
+    '&:hover': {
+      borderColor: '#2684FF',
+    },
+    '&:focus-visible': {
+      outline: '#2684FF',
+    },
+  },
+
+  input: {
+    display: 'none',
   },
 });
 
@@ -28,7 +55,7 @@ const exportData = (fileName: string, href: string,) => {
 export const Footer = () => {
   const classes = useStyles();
 
-  const { todos } = useContext(TodoContext);
+  const { todos, setTodos } = useContext(TodoContext);
 
   const exportCalendarAsImgHandler = () => {
     html2canvas(document.getElementById('capture') as HTMLElement)
@@ -53,8 +80,35 @@ export const Footer = () => {
 
     exportData(fileName, href);
   };
-  
-  const importCalendarAsJSONHandler = () => {};
+
+  const importCalendarAsJSONHandler = (e : React.ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      const text = reader.result;
+
+      if(text) {
+        const importedTodos = JSON.parse(text as string);
+
+        // console.log(importedTodos);
+
+        const todosFromUser = importedTodos.map((todo: Omit<Todo, 'id'|'labelColors'>) => {
+          return {
+            ...todo,
+            id: uuid(),
+            labelColors: [],
+          };
+        });
+
+        console.log(todosFromUser);
+
+        setTodos(() => [...todosFromUser]);
+      }
+    });
+
+    if (e.target.files) {
+      reader.readAsText(e.target.files[0] as File);
+    }
+  };
 
   return (
       <section id="footer" className={classes.controlPanel}>
@@ -73,10 +127,15 @@ export const Footer = () => {
         </span>
 
         <span className={classes.buttons}>
-          <Button 
-            content='Import as json' 
-            onClick={importCalendarAsJSONHandler}
-          />
+          <label className={classes.label} htmlFor="fileInput">Import calendar as json
+            <input 
+              className={classes.input} 
+              type="file" 
+              id="fileInput"
+              accept="application/JSON"
+              onChange={importCalendarAsJSONHandler}
+            />
+          </label>
         </span>
       </section>
   );

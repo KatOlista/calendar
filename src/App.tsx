@@ -14,7 +14,6 @@ const useStyles = createUseStyles({
     gridTemplateRows: 'auto 4fr auto',
     backgroundColor: '#EEEFF1',
     color: '#213547',
-    fontFamily: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
     lineHeight: 1.5,
     fontWeight: 400,
   },
